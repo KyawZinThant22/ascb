@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import Dashboard from "./components/Dashboard";
+import SideBar from "./components/SideBar";
+import Summary from "./components/Summary";
 
+import { useEffect, useState } from "react";
 function App() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loading ? (
+        <div className="loader"></div>
+      ) : (
+        <div className="p-[2rem] pt-[5rem]">
+          <div className="grid  grid-cols-12  h-screen justify-center gap-6">
+            <SideBar />
+            <Dashboard />
+            <Summary />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
